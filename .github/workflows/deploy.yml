@@ -28,7 +28,7 @@ jobs:
       - name: Build project
         run: |
           npm run build
-          npm run export  # creates out/ folder
+          # npm run export  # creates out/ folder
         env:
           NODE_ENV: production
 
