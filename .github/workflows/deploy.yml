@@ -67,4 +67,5 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
-            sudo chown -R www:www ${{ secrets.DEPLOY_PATH }}
+            echo "Fixing ownership for www:www (skipping .user.ini)..."
+            find ${{ secrets.DEPLOY_PATH }} -mindepth 1 ! -name ".user.ini" -exec chown -R www:www {} +
