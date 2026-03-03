@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { useTheme } from "./ThemeProvider";
 
 export default function StormBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const { theme } = useTheme();
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -22,6 +24,13 @@ export default function StormBackground() {
     // Configuration
     const particleCount = window.innerWidth < 768 ? 40 : 70;
     const connectionDistance = 150;
+    
+    // Theme-based colors
+    const isDark = theme === 'dark';
+    const particleColor = isDark ? "rgba(148, 163, 184, 0.5)" : "rgba(71, 85, 105, 0.4)";
+    const lineColor = isDark ? "rgba(59, 130, 246, 0.2)" : "rgba(59, 130, 246, 0.15)";
+    const flashColor = isDark ? "rgba(59, 130, 246, 0.03)" : "rgba(59, 130, 246, 0.02)";
+    const bgColor = isDark ? "#0B1120" : "#ffffff";
     
     // Resize Handling
     const resize = () => {
@@ -58,7 +67,7 @@ export default function StormBackground() {
 
       draw() {
         // Use 'context' instead of 'ctx'
-        context.fillStyle = "rgba(148, 163, 184, 0.5)"; 
+        context.fillStyle = particleColor; 
         context.beginPath();
         context.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         context.fill();
@@ -93,7 +102,7 @@ export default function StormBackground() {
             // Use 'context' instead of 'ctx'
             context.beginPath();
             let opacity = 1 - distance / connectionDistance;
-            context.strokeStyle = `rgba(59, 130, 246, ${opacity * 0.2})`; 
+            context.strokeStyle = lineColor.replace('0.2', String(opacity * 0.2)); 
             context.lineWidth = 1;
             context.moveTo(particles[i].x, particles[i].y);
             context.lineTo(particles[j].x, particles[j].y);
@@ -108,7 +117,7 @@ export default function StormBackground() {
         lightningTimer = 0;
         // Flash background slightly
         // Use 'context' instead of 'ctx'
-        context.fillStyle = "rgba(59, 130, 246, 0.03)";
+        context.fillStyle = flashColor;
         context.fillRect(0, 0, width, height);
       }
 
@@ -122,12 +131,12 @@ export default function StormBackground() {
     return () => {
       window.removeEventListener("resize", resize);
     };
-  }, []);
+  }, [theme]);
 
   return (
     <canvas
       ref={canvasRef}
-      className="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none bg-[#0B1120]"
+      className={`fixed top-0 left-0 w-full h-full -z-10 pointer-events-none ${theme === 'dark' ? 'bg-[#0B1120]' : 'bg-white'}`}
     />
   );
 }

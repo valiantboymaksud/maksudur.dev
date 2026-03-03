@@ -18,3 +18,14 @@ body {
   background: hsl(var(--background));
   transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+@keyframes gradientHover {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-gradientHover {
+  background-size: 200% 200%;
+  animation: gradientHover 3s ease infinite;
+}

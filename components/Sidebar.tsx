@@ -8,6 +8,7 @@ import {
   Sun, Moon 
 } from "lucide-react";
 import { cn } from "@/lib/utils/cn";
+import { useTheme } from "./ThemeProvider";
 
 const navItems = [
   { name: "Home", href: "/", icon: User },
@@ -20,56 +21,38 @@ const navItems = [
 export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  const { theme, toggleTheme } = useTheme();
+  const isDarkMode = theme === 'dark';
 
-  // Handle Theme Toggle
-  useEffect(() => {
-    // Check local storage or system preference on initial load
-    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      setIsDarkMode(true);
-      document.documentElement.classList.add('dark');
-    } else {
-      setIsDarkMode(false);
-      document.documentElement.classList.remove('dark');
-    }
-  }, []);
-
-  const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
-    if (!isDarkMode) {
-      document.documentElement.classList.add('dark');
-      localStorage.theme = 'dark';
-    } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.theme = 'light';
-    }
-  };
-
+  // Highlight active section on scroll
   useEffect(() => {
     const handleScroll = () => {
-      const sections = navItems.map((item) => document.querySelector(item.href));
+      const sectionItems = navItems.filter((item) => item.href.startsWith("#"));
       let current = "";
-      sections.forEach((section) => {
-        if (section instanceof HTMLElement) {
-          const sectionTop = section.offsetTop;
+      
+      sectionItems.forEach((item) => {
+        const element = document.querySelector(item.href);
+        if (element instanceof HTMLElement) {
+          const sectionTop = element.offsetTop;
           if (window.scrollY >= sectionTop - 150) {
-            current = section.getAttribute("id") || "";
+            current = item.href.substring(1);
           }
         }
       });
       setActiveSection(current);
     };
+    
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const SidebarContent = () => (
     <nav className="flex flex-col h-full justify-between py-8">
+      {/* Top Section */}
       <div className="px-6">
-        {/* Profile Section with Image */}
+        {/* Profile */}
         <Link href="/" className="flex items-center gap-3 mb-10 group">
           <div className="relative w-12 h-12 rounded-full overflow-hidden ring-2 ring-blue-500/50 group-hover:ring-blue-500 transition-all shadow-lg">
-            {/* REPLACE SRC WITH YOUR OWN IMAGE URL */}
             <img 
               src="https://kodersolution.com/assets/frontend/img/author/img.webp?format=webp" 
               alt="Maksudur Rahman" 
@@ -82,6 +65,7 @@ export default function Sidebar() {
           </div>
         </Link>
 
+        {/* Navigation */}
         <ul className="space-y-1">
           {navItems.map((item) => {
             const isActive = item.href.startsWith("#") && activeSection === item.href.substring(1);
@@ -104,16 +88,28 @@ export default function Sidebar() {
               </li>
             );
           })}
+
+          {/* Animated Download CV Button */}
+          <li>
+            <a
+              href="/files/Maksudur_Rahman.pdf"
+              download
+              className="flex items-center justify-center px-4 py-3 mt-2 rounded-lg font-bold text-white bg-gradient-to-r from-red-500 via-pink-500 to-purple-500 bg-[length:200%_200%] animate-gradientHover hover:scale-105 transition-all text-sm shadow-md"
+            >
+              Download CV
+            </a>
+          </li>
         </ul>
       </div>
 
+      {/* Bottom Section: Socials, Theme Toggle, Copyright */}
       <div className="px-6">
         <div className="flex gap-3 mb-4 items-center justify-between">
           <div className="flex gap-3">
             <a href="https://github.com/valiantboymaksud" className="p-2 rounded-lg dark:bg-white/5 bg-slate-100 hover:bg-slate-200 dark:hover:bg-white/10 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all">
               <Github size={18} />
             </a>
-            <a href="http://linkedin.com/in/maddevs" className="p-2 rounded-lg dark:bg-white/5 bg-slate-100 hover:bg-slate-200 dark:hover:bg-white/10 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all">
+            <a href="http://linkedin.com/in/maksudur-dev" className="p-2 rounded-lg dark:bg-white/5 bg-slate-100 hover:bg-slate-200 dark:hover:bg-white/10 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all">
               <Linkedin size={18} />
             </a>
             <a href="mailto:valiantmaksud@gmail.com" className="p-2 rounded-lg dark:bg-white/5 bg-slate-100 hover:bg-slate-200 dark:hover:bg-white/10 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all">
@@ -146,18 +142,17 @@ export default function Sidebar() {
         <SidebarContent />
       </motion.aside>
 
-      {/* Mobile Header (Top Bar) */}
+      {/* Mobile Header */}
       <header className="md:hidden fixed top-0 w-full h-16 dark:bg-[#0B1120]/95 bg-white/95 backdrop-blur-md border-b border-slate-200 dark:border-white/10 z-50 px-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
-            <div className="relative w-8 h-8 rounded-full overflow-hidden ring-1 ring-blue-500/30">
-               {/* REPLACE SRC WITH YOUR OWN IMAGE URL */}
-               <img 
-                src="https://kodersolution.com/assets/frontend/img/author/img.webp?format=webp" 
-                alt="MR" 
-                className="object-cover w-full h-full"
-              />
-            </div>
-            <span className="font-bold text-slate-900 dark:text-white">Maksudur Rahman</span>
+          <div className="relative w-8 h-8 rounded-full overflow-hidden ring-1 ring-blue-500/30">
+            <img 
+              src="https://kodersolution.com/assets/frontend/img/author/img.webp?format=webp" 
+              alt="MR" 
+              className="object-cover w-full h-full"
+            />
+          </div>
+          <span className="font-bold text-slate-900 dark:text-white">Maksudur Rahman</span>
         </div>
         <button onClick={() => setIsOpen(!isOpen)} className="text-slate-900 dark:text-white p-2 bg-slate-100 dark:bg-white/5 rounded-lg hover:bg-slate-200 dark:hover:bg-white/10 transition-colors">
           {isOpen ? <X /> : <Menu />}

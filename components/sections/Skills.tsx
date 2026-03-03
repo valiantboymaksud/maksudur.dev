@@ -2,6 +2,7 @@
 
 import { FadeIn } from "@/components/ui/framer-wrapper";
 import { Server, Layout, Database, Shield, Terminal, Layers } from "lucide-react";
+import { useTheme } from "@/components/ThemeProvider";
 
 const skillCategories = [
   {
@@ -18,7 +19,7 @@ const skillCategories = [
     color: "text-purple-400",
     bg: "bg-purple-500/10",
     border: "border-purple-500/20",
-    tech: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Redux"]
+    tech: ["React", "TypeScript", "Tailwind CSS", "Redux"]
   },
   {
     title: "Database & Caching",
@@ -55,10 +56,15 @@ const skillCategories = [
 ];
 
 export default function Skills() {
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
+
   return (
     <section id="skills" className="py-24 px-4 sm:px-6 lg:px-8 relative max-w-6xl mx-auto">
       <FadeIn>
-        <h2 className="text-3xl font-bold text-white mb-12 flex items-center gap-3">
+        <h2 className={`text-3xl font-bold mb-12 flex items-center gap-3 transition-colors ${
+          isDark ? 'text-white' : 'text-slate-900'
+        }`}>
           <span className="w-8 h-1 bg-blue-500 rounded-full"></span>
           Technical Expertise
         </h2>
@@ -67,14 +73,24 @@ export default function Skills() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {skillCategories.map((category, idx) => (
           <FadeIn key={category.title} delay={idx * 0.1}>
-            <div className={`group p-6 rounded-2xl border bg-white/5 hover:bg-white/10 transition-all duration-300 hover:-translate-y-1 ${category.border}`}>
+            <div className={`group p-6 rounded-2xl border transition-all duration-300 hover:-translate-y-1 ${
+              isDark
+                ? `bg-white/5 hover:bg-white/10 ${category.border}`
+                : 'bg-slate-100 hover:bg-slate-200 border-slate-300'
+            }`}>
               <div className={`w-12 h-12 rounded-xl ${category.bg} ${category.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
                 <category.icon size={24} />
               </div>
-              <h3 className="text-xl font-bold text-white mb-4">{category.title}</h3>
+              <h3 className={`text-xl font-bold mb-4 transition-colors ${
+                isDark ? 'text-white' : 'text-slate-900'
+              }`}>{category.title}</h3>
               <div className="flex flex-wrap gap-2">
                 {category.tech.map(t => (
-                  <span key={t} className="text-xs px-2.5 py-1 rounded-md bg-white/5 text-slate-300 border border-white/5 group-hover:border-white/10 transition-colors">
+                  <span key={t} className={`text-xs px-2.5 py-1 rounded-md border transition-colors ${
+                    isDark
+                      ? 'bg-white/5 text-slate-300 border-white/5 group-hover:border-white/10'
+                      : 'bg-slate-200 text-slate-700 border-slate-300 group-hover:border-slate-400'
+                  }`}>
                     {t}
                   </span>
                 ))}

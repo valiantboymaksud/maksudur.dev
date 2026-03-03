@@ -10,12 +10,11 @@ export const metadata = {
 
 export default function ContactPage() {
   return (
-    <MainLayout>
-      <div className="py-24 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+      <div className="py-24 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 md:pt-0">
         
         {/* Header */}
         <FadeIn>
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
+          <h1 className="text-4xl pt-10 md:text-5xl font-bold text-white mb-6">
             Let's Work <span className="text-blue-500">Together</span>
           </h1>
           <p className="text-xl text-slate-400 mb-12 max-w-2xl">
@@ -82,7 +81,7 @@ export default function ContactPage() {
                   </a>
                   
                   <a 
-                    href="http://linkedin.com/in/maddevs" 
+                    href="http://linkedin.com/in/maksudur-dev" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="flex items-center gap-3 p-4 bg-white/5 hover:bg-white/10 border border-white/5 hover:border-blue-500/30 rounded-xl transition-all hover:-translate-y-1 group"
@@ -102,7 +101,7 @@ export default function ContactPage() {
                   </a>
 
                   <a 
-                    href="#" 
+                    href="https://kodersolution.com" 
                     className="flex items-center gap-3 p-4 bg-white/5 hover:bg-white/10 border border-white/5 hover:border-purple-500/30 rounded-xl transition-all hover:-translate-y-1 group"
                   >
                     <Globe size={24} className="text-slate-400 group-hover:text-purple-500 transition-colors" />
@@ -167,6 +166,5 @@ export default function ContactPage() {
 
         </div>
       </div>
-    </MainLayout>
   );
 }
