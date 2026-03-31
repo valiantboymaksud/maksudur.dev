@@ -10,11 +10,11 @@ export const metadata = {
 
 export default function ContactPage() {
   return (
-      <div className="py-24 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 md:pt-0">
+      <div className="py-24 max-w-5xl mx-auto pt-16 md:pt-0">
         
         {/* Header */}
         <FadeIn>
-          <h1 className="text-4xl pt-10 md:text-5xl font-bold text-white mb-6">
+          <h1 className="text-4xl pt-10 md:text-5xl font-bold text-slate-900 dark:text-white mb-6">
             Let's Work <span className="text-blue-500">Together</span>
           </h1>
           <p className="text-xl text-slate-400 mb-12 max-w-2xl">

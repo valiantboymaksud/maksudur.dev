@@ -2,20 +2,21 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   Menu, X, Github, Linkedin, Mail, Briefcase, User, FolderOpen, 
-  Sun, Moon 
+  Sun, Moon, Home
 } from "lucide-react";
 import { cn } from "@/lib/utils/cn";
 import { useTheme } from "./ThemeProvider";
 
 const navItems = [
-  { name: "Home", href: "/", icon: User },
-  { name: "Profile", href: "#intro", icon: User },
-  { name: "Experience", href: "#experience", icon: Briefcase },
-  { name: "Projects", href: "#projects", icon: FolderOpen },
-  { name: "Contact", href: "/contact", icon: Mail },
+  { name: "Home", href: "/", icon: Home, isHash: false },
+  { name: "Profile", href: "#intro", icon: User, isHash: true },
+  { name: "Experience", href: "#experience", icon: Briefcase, isHash: true },
+  { name: "Projects", href: "#projects", icon: FolderOpen, isHash: true },
+  { name: "Contact", href: "/contact", icon: Mail, isHash: false },
 ];
 
 export default function Sidebar() {
@@ -23,6 +24,16 @@ export default function Sidebar() {
   const [activeSection, setActiveSection] = useState("");
   const { theme, toggleTheme } = useTheme();
   const isDarkMode = theme === 'dark';
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
+
+  // Build correct href: on non-home pages, hash links should go to /#hash
+  const getHref = (item: typeof navItems[0]) => {
+    if (item.isHash && !isHomePage) {
+      return `/${item.href}`;
+    }
+    return item.href;
+  };
 
   // Highlight active section on scroll
   useEffect(() => {
@@ -68,12 +79,16 @@ export default function Sidebar() {
         {/* Navigation */}
         <ul className="space-y-1">
           {navItems.map((item) => {
-            const isActive = item.href.startsWith("#") && activeSection === item.href.substring(1);
+            const sectionId = item.href.startsWith("#") ? item.href.substring(1) : null;
+            const isActiveHash = sectionId !== null && activeSection === sectionId;
+            const isActivePage = !item.isHash && pathname === item.href;
+            const isActive = isActiveHash || isActivePage;
             const Icon = item.icon;
+            const resolvedHref = getHref(item);
             return (
               <li key={item.name}>
                 <Link
-                  href={item.href}
+                  href={resolvedHref}
                   onClick={() => setIsOpen(false)}
                   className={cn(
                     "flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-sm font-medium gap-3",
@@ -144,16 +159,16 @@ export default function Sidebar() {
 
       {/* Mobile Header */}
       <header className="md:hidden fixed top-0 w-full h-16 dark:bg-[#0B1120]/95 bg-white/95 backdrop-blur-md border-b border-slate-200 dark:border-white/10 z-50 px-4 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div className="relative w-8 h-8 rounded-full overflow-hidden ring-1 ring-blue-500/30">
+        <Link href="/" className="flex items-center gap-3 group">
+          <div className="relative w-8 h-8 rounded-full overflow-hidden ring-1 ring-blue-500/30 group-hover:ring-blue-500 transition-all">
             <img 
               src="https://kodersolution.com/assets/frontend/img/author/img.webp?format=webp" 
               alt="MR" 
               className="object-cover w-full h-full"
             />
           </div>
-          <span className="font-bold text-slate-900 dark:text-white">Maksudur Rahman</span>
-        </div>
+          <span className="font-bold text-slate-900 dark:text-white group-hover:text-blue-500 transition-colors">Maksudur Rahman</span>
+        </Link>
         <button onClick={() => setIsOpen(!isOpen)} className="text-slate-900 dark:text-white p-2 bg-slate-100 dark:bg-white/5 rounded-lg hover:bg-slate-200 dark:hover:bg-white/10 transition-colors">
           {isOpen ? <X /> : <Menu />}
         </button>
@@ -169,9 +184,6 @@ export default function Sidebar() {
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
             className="md:hidden fixed top-0 left-0 h-screen w-[280px] dark:bg-[#0B1120] bg-white z-50 border-r border-slate-200 dark:border-white/10"
           >
-            <button onClick={() => setIsOpen(false)} className="absolute top-4 right-4 text-slate-900 dark:text-white p-2 bg-slate-100 dark:bg-white/5 rounded-lg">
-              <X />
-            </button>
             <div className="pt-16 h-full">
               <SidebarContent />
             </div>
