@@ -26,7 +26,7 @@ export default function Experience() {
   const isDark = theme === 'dark';
 
   return (
-    <section id="experience" className="py-24 px-4 relative">
+    <section id="experience" className="py-12 px-4 relative">
       <div className="max-w-4xl mx-auto">
         <FadeIn>
           <h2 className={`text-4xl font-bold text-center mb-16 transition-colors ${

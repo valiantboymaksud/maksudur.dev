@@ -1,156 +1,119 @@
 "use client";
 
-import { useState, useEffect } from 'react';
-import { Project } from '@/types';
-import Navbar from '@/components/Navbar';
-import AnimatedBackground from '@/components/AnimatedBackground';
+import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 
-// Full Data
-const projectsData: Project[] = [
+const projectsData = [
   {
-    id: '1',
-    title: 'Payment Gateway',
-    description: 'Robust payment solution handling bank integrations with optimized flow.',
-    fullDetails: 'A comprehensive payment gateway system designed for high-volume transactions...',
-    tech: ['PHP', 'Laravel', 'MySQL', 'Redis'],
-    image: 'https://picsum.photos/seed/payment/800/600',
+    id: 'payment-gateway',
+    title: 'Enterprise Payment Gateway',
+    desc: 'Scalable fintech solution handling 1M+ daily transactions with sub-second latency and bank-grade security.',
+    tech: ['Laravel', 'MySQL', 'Redis', 'Vue.js'],
+    image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80&w=800',
+    category: 'Fintech'
   },
   {
-    id: '2',
-    title: 'BOS (Back Office System)',
-    description: 'Enterprise management system for tracking operational workflows.',
-    fullDetails: 'This BOS serves as the central nervous system for internal operations...',
-    tech: ['React', 'Next.js', 'TypeScript', 'PostgreSQL'],
-    image: 'https://picsum.photos/seed/bos/800/600',
-  },
-  {
-    id: '3',
-    title: 'HRM System',
-    description: 'Comprehensive HR solution for employee onboarding and payroll.',
-    fullDetails: 'A full-stack Human Resource Management System covering the entire employee lifecycle...',
-    tech: ['Python', 'Django', 'React', 'Docker'],
-    image: 'https://picsum.photos/seed/hrm/800/600',
-  },
-  {
-    id: '4',
-    title: 'Garments ERP',
-    description: 'Specialized ERP for the textile industry managing production and supply chain.',
-    fullDetails: 'Tailored specifically for the garments industry, this ERP manages production lines...',
-    tech: ['PHP', 'Laravel', 'MySQL', 'Vue.js'],
-    image: 'https://picsum.photos/seed/garments/800/600',
-  },
-  {
-    id: '5',
+    id: 'school',
     title: 'School Management System',
-    description: 'Complete administrative suite for educational institutions.',
-    fullDetails: 'A unified platform for schools to manage academic and administrative activities...',
-    tech: ['Laravel', 'MySQL', 'Alpine.js', 'Tailwind'],
-    image: 'https://picsum.photos/seed/school/800/600',
+    desc: 'Unified administrative platform managing academic cycles, student life, and real-time performance analytics.',
+    tech: ['Laravel', 'MySQL', 'Livewire', 'Alpine.js'],
+    image: 'https://images.unsplash.com/photo-1501504905252-473c47e087f8?auto=format&fit=crop&q=80&w=800',
+    category: 'Education'
   },
+  {
+    id: 'pos',
+    title: 'Point of Sale System',
+    desc: 'Cloud-based POS with integrated inventory management and multi-outlet synchronization.',
+    tech: ['PHP', 'Laravel', 'MySQL'],
+    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&q=80&w=800',
+    category: 'E-commerce'
+  },
+  {
+    id: 'hrm',
+    title: 'HRM Platform',
+    desc: 'Centralized workforce management system featuring payroll automation and performance tracking.',
+    tech: ['PHP', 'Laravel', 'MySQL'],
+    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800',
+    category: 'Enterprise'
+  }
 ];
 
-const GlassCard = ({ children, className = "" }: { children: React.ReactNode, className?: string }) => (
-  <div className={`bg-white/70 dark:bg-slate-900/70 backdrop-blur-md border border-white/20 dark:border-slate-700/50 rounded-xl shadow-lg ${className}`}>
-    {children}
-  </div>
-);
-
 export default function ProjectsPage() {
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-
-  // Handle URL Hash for direct linking
-  useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash.replace('#', '');
-      if (hash) {
-        const project = projectsData.find(p => p.id === hash);
-        if (project) setSelectedProject(project);
-      }
-    };
-
-    window.addEventListener('hashchange', handleHashChange);
-    handleHashChange(); // Check on load
-
-    return () => window.removeEventListener('hashchange', handleHashChange);
-  }, []);
-
   return (
-    <div className="min-h-screen relative overflow-hidden bg-slate-50 dark:bg-[#0f172a]">
-      <AnimatedBackground />
-      
-      {/* STRICT HEADER ON THIS PAGE TOO */}
-      <Navbar /> 
-
-      <div className="relative z-10 pt-24 pb-12 px-4 sm:px-6 lg:px-8">
-        
-        {/* Header Area */}
-        <div className="max-w-7xl mx-auto mb-12">
-          <Link href="/" className="inline-flex items-center text-slate-500 hover:text-blue-600 transition mb-4">
-            <svg className="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
-            Back to Home
+    <div className="min-h-screen bg-white dark:bg-[#0B1120] pb-20 pt-10">
+      <div className="max-w-7xl mx-auto px-4">
+        {/* Header */}
+        <header className="mb-20">
+          <Link 
+            href="/" 
+            className="inline-flex items-center text-sm font-bold text-blue-600 dark:text-blue-400 hover:gap-2 transition-all mb-8 group"
+          >
+            <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform mr-2" /> Back to Home
           </Link>
-          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
-            Software Showcase
+          <h1 className="text-5xl md:text-7xl font-black tracking-tight text-slate-900 dark:text-white mb-6">
+            Software <span className="text-blue-500">Showcase</span>
           </h1>
-          <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl">
-            A collection of enterprise-grade systems I have engineered.
+          <p className="text-xl text-slate-600 dark:text-slate-400 max-w-2xl leading-relaxed">
+            A comprehensive overview of enterprise systems and architectural solutions I've engineered.
           </p>
-        </div>
+        </header>
 
-        {/* Projects Grid */}
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projectsData.map((project) => (
-            <GlassCard key={project.id} className="overflow-hidden flex flex-col group cursor-pointer hover:border-blue-500/50 transition-all duration-300">
-              <div className="h-48 overflow-hidden relative">
-                <img src={project.image} alt={project.title} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" />
-              </div>
-              <div className="p-6 flex-1 flex flex-col">
-                <h3 className="text-xl font-bold mb-2 text-slate-900 dark:text-white">{project.title}</h3>
-                <p className="text-slate-600 dark:text-slate-400 text-sm mb-4 flex-1">{project.description}</p>
-                <button 
-                  onClick={() => setSelectedProject(project)}
-                  className="w-full py-2 px-4 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-lg font-medium text-sm hover:bg-blue-600 dark:hover:bg-blue-500 transition-colors"
-                >
-                  View Details
-                </button>
-              </div>
-            </GlassCard>
+            <motion.div 
+              key={project.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <Link href={`/projects/${project.id}`} className="group block h-full">
+                <div className="h-full flex flex-col rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50 group-hover:border-blue-500/30 group-hover:shadow-2xl group-hover:shadow-blue-500/5 transition-all duration-300">
+                  {/* Image */}
+                  <div className="relative h-64 overflow-hidden">
+                    <div className="absolute inset-0 bg-blue-600/5 group-hover:bg-transparent transition-colors z-10"></div>
+                    <img 
+                      src={project.image} 
+                      alt={project.title} 
+                      className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out" 
+                    />
+                    <div className="absolute top-4 left-4 z-20">
+                      <span className="px-3 py-1 bg-blue-600 text-white text-[10px] font-black uppercase tracking-widest rounded-full shadow-lg">
+                        {project.category}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-8 flex-1 flex flex-col">
+                    <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-white group-hover:text-blue-500 transition-colors">
+                      {project.title}
+                    </h2>
+                    <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-6 flex-1">
+                      {project.desc}
+                    </p>
+                    
+                    <div className="flex items-center justify-between pt-6 border-t border-slate-200 dark:border-slate-800">
+                      <div className="flex gap-2">
+                        {project.tech.slice(0, 3).map(t => (
+                          <span key={t} className="text-[10px] font-bold px-2 py-1 rounded bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+                      <span className="text-blue-600 dark:text-blue-400 font-bold text-sm flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                        Explore <ArrowRight size={16} />
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            </motion.div>
           ))}
         </div>
       </div>
-
-      {/* PROJECT DETAILS MODAL */}
-      {selectedProject && (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
-          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setSelectedProject(null)}></div>
-          <GlassCard className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto p-0 animate-in fade-in zoom-in duration-300">
-            <button onClick={() => setSelectedProject(null)} className="absolute top-4 right-4 z-10 p-2 bg-black/50 hover:bg-black/70 text-white rounded-full transition">
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
-            </button>
-            <img src={selectedProject.image} alt={selectedProject.title} className="w-full h-64 object-cover" />
-            <div className="p-8">
-              <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">{selectedProject.title}</h2>
-              <div className="flex flex-wrap gap-2 mb-6">
-                {selectedProject.tech.map((t) => (
-                  <span key={t} className="text-xs font-bold bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-2.5 py-1 rounded border border-blue-200 dark:border-blue-800/30">
-                    {t}
-                  </span>
-                ))}
-              </div>
-              <div className="space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed">
-                <p className="text-lg font-medium">{selectedProject.description}</p>
-                <p>{selectedProject.fullDetails}</p>
-              </div>
-              <div className="mt-8 pt-6 border-t border-slate-200 dark:border-slate-700 flex justify-end">
-                <button onClick={() => setSelectedProject(null)} className="px-6 py-2 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-white rounded-lg hover:bg-slate-300 dark:hover:bg-slate-700 transition">
-                  Close Details
-                </button>
-              </div>
-            </div>
-          </GlassCard>
-        </div>
-      )}
     </div>
   );
 }

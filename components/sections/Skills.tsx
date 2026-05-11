@@ -72,8 +72,8 @@ export default function Skills() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {skillCategories.map((category, idx) => (
-          <FadeIn key={category.title} delay={idx * 0.1}>
-            <div className={`group p-6 rounded-2xl border transition-all duration-300 hover:-translate-y-1 ${
+          <FadeIn key={category.title} delay={idx * 0.1} className="h-full">
+            <div className={`group p-6 rounded-2xl border transition-all duration-300 hover:-translate-y-1 h-full flex flex-col ${
               isDark
                 ? `bg-white/5 hover:bg-white/10 ${category.border}`
                 : 'bg-slate-100 hover:bg-slate-200 border-slate-300'
@@ -84,7 +84,7 @@ export default function Skills() {
               <h3 className={`text-xl font-bold mb-4 transition-colors ${
                 isDark ? 'text-white' : 'text-slate-900'
               }`}>{category.title}</h3>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 mt-auto">
                 {category.tech.map(t => (
                   <span key={t} className={`text-xs px-2.5 py-1 rounded-md border transition-colors ${
                     isDark

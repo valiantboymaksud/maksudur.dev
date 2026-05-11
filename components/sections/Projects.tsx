@@ -16,34 +16,34 @@ const projects = [
   {
     id: 'payment-gateway',
     title: 'Enterprise Payment Gateway',
-    desc: 'High-volume processing system handling 10k+ TPS with ACID compliance.',
-    tech: ['PHP', 'Laravel', 'MySQL', 'Vue.js', 'Redis', 'Postgres'],
-    image: 'https://picsum.photos/seed/pay/600/400',
-    color: 'from-blue-500 to-indigo-600'
+    desc: 'Scalable fintech solution handling 1M+ daily transactions with sub-second latency and bank-grade security.',
+    tech: ['Laravel', 'MySQL', 'Redis', 'Vue.js'],
+    image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80&w=800',
+    category: 'Fintech'
+  },
+  {
+    id: 'school',
+    title: 'School Management System',
+    desc: 'Unified administrative platform managing academic cycles, student life, and real-time performance analytics.',
+    tech: ['Laravel', 'MySQL', 'Livewire', 'Alpine.js'],
+    image: 'https://images.unsplash.com/photo-1501504905252-473c47e087f8?auto=format&fit=crop&q=80&w=800',
+    category: 'Education'
   },
   {
     id: 'pos',
     title: 'Point of Sale System',
-    desc: 'Real-time dashboard for tracking logistic fleets and inventory.',
+    desc: 'Cloud-based POS with integrated inventory management and multi-outlet synchronization.',
     tech: ['PHP', 'Laravel', 'MySQL'],
-    image: 'https://picsum.photos/seed/bos/600/400',
-    color: 'from-purple-500 to-pink-600'
-  },
-  {
-    id: 'garments',
-    title: 'Garments ERP',
-    desc: 'End-to-end production tracking for textile manufacturing.',
-    tech: ['Laravel', 'MySQL', 'Vue.js'],
-    image: 'https://picsum.photos/seed/gar/600/400',
-    color: 'from-orange-500 to-red-600'
+    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&q=80&w=800',
+    category: 'E-commerce'
   },
   {
     id: 'hrm',
     title: 'HRM Platform',
-    desc: 'Multi-tenant HR solution for global workforce management.',
+    desc: 'Centralized workforce management system featuring payroll automation and performance tracking.',
     tech: ['PHP', 'Laravel', 'MySQL'],
-    image: 'https://picsum.photos/seed/hrm/600/400',
-    color: 'from-green-500 to-teal-600'
+    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800',
+    category: 'Enterprise'
   }
 ];
 
@@ -53,72 +53,101 @@ export default function Projects() {
   const isDark = theme === 'dark';
 
   return (
-    <section id="projects" className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative">
-     
-      <div className="flex justify-between items-end mb-12">
-        <div>
-          <FadeIn>
-              <h2 className={`text-3xl font-bold mb-3 flex items-center gap-3 transition-colors ${
-                isDark ? 'text-white' : 'text-slate-900'
-              }`}>
-                <span className="w-8 h-1 bg-blue-500 rounded-full"></span>
-                Selected Work
-              </h2>
-            </FadeIn>
-        </div>
-        <div className="flex gap-2">
-          <button onClick={() => swiperRef.current?.slidePrev()} className={`p-3 rounded-full transition-all border ${
-            isDark
-              ? 'bg-white/5 hover:bg-white/10 text-white border-white/10 hover:border-blue-500/50'
-              : 'bg-slate-200 hover:bg-slate-300 text-slate-900 border-slate-300 hover:border-blue-500/50'
-          }`}>
-            <ArrowLeft size={20} />
+    <section id="projects" className="py-16 px-4 relative max-w-7xl mx-auto overflow-hidden">
+      <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+        <FadeIn>
+          <div className="space-y-2">
+            <h2 className={`text-sm font-bold uppercase tracking-widest ${isDark ? 'text-blue-400' : 'text-blue-600'}`}>
+              Portfolio
+            </h2>
+            <h3 className={`text-4xl md:text-5xl font-black tracking-tight ${isDark ? 'text-white' : 'text-slate-900'}`}>
+              Selected <span className="text-blue-500">Work</span>
+            </h3>
+          </div>
+        </FadeIn>
+        
+        <div className="flex gap-3">
+          <button 
+            onClick={() => swiperRef.current?.slidePrev()} 
+            className={`group p-4 rounded-full transition-all border ${
+              isDark
+                ? 'bg-slate-900 border-slate-800 hover:border-blue-500 text-slate-400 hover:text-white'
+                : 'bg-white border-slate-200 hover:border-blue-500 text-slate-600 hover:text-blue-600'
+            }`}
+            aria-label="Previous Slide"
+          >
+            <ArrowLeft size={24} className="group-hover:-translate-x-1 transition-transform" />
           </button>
-          <button onClick={() => swiperRef.current?.slideNext()} className={`p-3 rounded-full transition-all border ${
-            isDark
-              ? 'bg-white/5 hover:bg-white/10 text-white border-white/10 hover:border-blue-500/50'
-              : 'bg-slate-200 hover:bg-slate-300 text-slate-900 border-slate-300 hover:border-blue-500/50'
-          }`}>
-            <ArrowRight size={20} />
+          <button 
+            onClick={() => swiperRef.current?.slideNext()} 
+            className={`group p-4 rounded-full transition-all border ${
+              isDark
+                ? 'bg-slate-900 border-slate-800 hover:border-blue-500 text-slate-400 hover:text-white'
+                : 'bg-white border-slate-200 hover:border-blue-500 text-slate-600 hover:text-blue-600'
+            }`}
+            aria-label="Next Slide"
+          >
+            <ArrowRight size={24} className="group-hover:translate-x-1 transition-transform" />
           </button>
         </div>
       </div>
 
       <Swiper
         modules={[Navigation, Autoplay]}
-        spaceBetween={30}
+        spaceBetween={24}
         slidesPerView={1}
         breakpoints={{
-          640: { slidesPerView: 1.5 },
           768: { slidesPerView: 2 },
           1024: { slidesPerView: 3 },
         }}
-        autoplay={{ delay: 3000, disableOnInteraction: false }}
+        autoplay={{ delay: 5000, disableOnInteraction: false }}
         loop={true}
         onSwiper={(swiper) => (swiperRef.current = swiper)}
-        className="!pb-12"
+        className="!pb-8 overflow-visible"
       >
         {projects.map((project) => (
           <SwiperSlide key={project.id}>
-            <motion.div whileHover={{ y: -10 }} transition={{ duration: 0.3 }}>
-              <GlassCard className={`h-full flex flex-col overflow-hidden group relative ${isDark ? '' : 'bg-slate-100'}`}>
-                {/* Image Area */}
-                <div className="h-48 relative overflow-hidden">
-                  <div className={`absolute inset-0 bg-gradient-to-r ${project.color} opacity-20 group-hover:opacity-10 transition-opacity z-10`}></div>
-                  <img src={project.image} alt={project.title} className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" />
+            <motion.div 
+              whileHover={{ y: -8 }} 
+              transition={{ duration: 0.4, ease: "easeOut" }}
+              className="h-full"
+            >
+              <div className={`h-full flex flex-col rounded-2xl overflow-hidden border transition-all duration-300 group ${
+                isDark 
+                  ? 'bg-slate-900/50 border-slate-800 hover:border-blue-500/50 hover:bg-slate-900' 
+                  : 'bg-white border-slate-200 hover:border-blue-500/30 hover:shadow-2xl hover:shadow-blue-500/5'
+              }`}>
+                {/* Image Container */}
+                <div className="relative h-56 overflow-hidden">
+                  <div className="absolute inset-0 bg-blue-600/10 group-hover:bg-transparent transition-colors z-10"></div>
+                  <img 
+                    src={project.image} 
+                    alt={project.title} 
+                    className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out" 
+                  />
+                  <div className="absolute top-4 left-4 z-20">
+                    <span className="px-3 py-1 bg-blue-600 text-white text-[10px] font-black uppercase tracking-widest rounded-full shadow-lg">
+                      {project.category}
+                    </span>
+                  </div>
                 </div>
                 
-                <div className="p-6 flex-1 flex flex-col">
-                  <h3 className={`text-xl font-bold mb-2 transition-colors ${isDark ? 'text-white' : 'text-slate-900'}`}>{project.title}</h3>
-                  <p className={`text-sm mb-4 flex-1 transition-colors ${isDark ? 'text-slate-400' : 'text-slate-700'}`}>{project.desc}</p>
+                {/* Content */}
+                <div className="p-8 flex-1 flex flex-col">
+                  <h4 className={`text-2xl font-bold mb-3 transition-colors ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                    {project.title}
+                  </h4>
+                  <p className={`text-sm leading-relaxed mb-6 flex-1 transition-colors ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
+                    {project.desc}
+                  </p>
                   
-                  <div className="flex justify-between items-center mt-auto">
-                    <div className="flex gap-2 flex-wrap">
-                      {project.tech.slice(0, 2).map(t => (
-                        <span key={t} className={`text-[10px] uppercase font-bold px-2 py-1 rounded border transition-colors ${
+                  <div className="flex items-center justify-between pt-6 border-t border-slate-100 dark:border-slate-800">
+                    <div className="flex gap-2">
+                      {project.tech.slice(0, 3).map(t => (
+                        <span key={t} className={`text-[10px] font-bold px-2 py-1 rounded transition-colors ${
                           isDark
-                            ? 'bg-white/5 text-slate-300 border-white/5'
-                            : 'bg-slate-200 text-slate-700 border-slate-300'
+                            ? 'bg-slate-800 text-slate-300'
+                            : 'bg-slate-100 text-slate-600'
                         }`}>
                           {t}
                         </span>
@@ -126,17 +155,19 @@ export default function Projects() {
                     </div>
                     <Link 
                       href={`/projects/${project.id}`} 
-                      className="p-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-colors shadow-lg shadow-blue-900/20"
+                      className={`flex items-center gap-2 text-sm font-bold transition-all ${
+                        isDark ? 'text-blue-400 hover:text-blue-300' : 'text-blue-600 hover:text-blue-700'
+                      }`}
                     >
-                      <ExternalLink size={16} />
+                      Case Study <ArrowRight size={16} />
                     </Link>
                   </div>
                 </div>
-              </GlassCard>
+              </div>
             </motion.div>
           </SwiperSlide>
         ))}
       </Swiper>
     </section>
   );
-}
+}

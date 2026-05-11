@@ -3,7 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
-export const FadeIn = ({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) => {
+export const FadeIn = ({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-10%" });
 
@@ -13,6 +13,7 @@ export const FadeIn = ({ children, delay = 0 }: { children: React.ReactNode; del
       initial={{ opacity: 0, y: 20 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
       transition={{ duration: 0.6, delay, ease: "easeOut" }}
+      className={className}
     >
       {children}
     </motion.div>

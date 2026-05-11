@@ -8,8 +8,31 @@ import Footer from "@/components/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Enterprise Software Engineer | Portfolio",
-  description: "Senior Engineer specializing in scalable systems and fintech solutions.",
+  title: {
+    default: "Maksudur Rahman | Software Engineer",
+    template: "%s | Maksudur Rahman",
+  },
+  description: "Senior Software Engineer specializing in scalable enterprise systems, fintech solutions, and robust backend architecture.",
+  keywords: ["Software Engineer", "Fintech", "Scalable Systems", "Backend Developer", "Maksudur Rahman"],
+  authors: [{ name: "Maksudur Rahman" }],
+  creator: "Maksudur Rahman",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://valiantboymaksud.github.io",
+    title: "Maksudur Rahman | Software Engineer",
+    description: "Senior Software Engineer specializing in scalable enterprise systems and fintech solutions.",
+    siteName: "Maksudur Rahman Portfolio",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Maksudur Rahman | Software Engineer",
+    description: "Senior Software Engineer specializing in scalable enterprise systems and fintech solutions.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({

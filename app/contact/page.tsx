@@ -10,7 +10,7 @@ export const metadata = {
 
 export default function ContactPage() {
   return (
-      <div className="py-24 max-w-5xl mx-auto pt-16 md:pt-0">
+      <div className="py-12 max-w-5xl mx-auto pt-16 md:pt-0">
         
         {/* Header */}
         <FadeIn>

@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Briefcase, Award, Zap, Users } from "lucide-react";
 import { useTheme } from "@/components/ThemeProvider";
+import Link from "next/link";
 
 const stats = [
   { icon: Briefcase, label: "Experience", value: "5+ Years" },
@@ -16,7 +17,7 @@ export default function Intro() {
   const isDark = theme === 'dark';
 
   return (
-    <section id="intro" className={`py-24 px-4 sm:px-6 lg:px-8 relative max-w-5xl mx-auto transition-colors ${isDark ? 'bg-transparent' : 'bg-transparent'}`}>
+    <section id="intro" className={`py-12 px-4 sm:px-6 lg:px-8 relative max-w-5xl mx-auto transition-colors ${isDark ? 'bg-transparent' : 'bg-transparent'}`}>
       <div className="grid md:grid-cols-2 gap-12 items-center">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
@@ -42,8 +43,8 @@ export default function Intro() {
             </p>
           </div>
           <div className="mt-8">
-            <a 
-              href="#contact" 
+            <Link 
+              href="/contact" 
               className={`inline-block px-6 py-3 font-bold rounded-lg transition-colors ${
                 isDark
                   ? 'bg-white text-[#0B1120] hover:bg-slate-200'
@@ -51,7 +52,7 @@ export default function Intro() {
               }`}
             >
               Discuss a Project
-            </a>
+            </Link>
           </div>
         </motion.div>
 
@@ -63,7 +64,7 @@ export default function Intro() {
           className="grid grid-cols-2 gap-4"
         >
           {stats.map((stat, idx) => (
-            <div key={idx} className={`p-6 rounded-xl transition-all border ${
+            <div key={idx} className={`p-6 rounded-xl transition-all border h-full flex flex-col ${
               isDark
                 ? 'bg-white/5 border-white/10 hover:bg-white/10'
                 : 'bg-slate-100 border-slate-300 hover:bg-slate-200'
@@ -72,7 +73,7 @@ export default function Intro() {
               <h3 className={`text-sm font-medium uppercase tracking-wider mb-1 transition-colors ${
                 isDark ? 'text-slate-400' : 'text-slate-600'
               }`}>{stat.label}</h3>
-              <p className={`text-lg font-bold transition-colors ${
+              <p className={`text-lg font-bold transition-colors mt-auto ${
                 isDark ? 'text-white' : 'text-slate-900'
               }`}>{stat.value}</p>
             </div>

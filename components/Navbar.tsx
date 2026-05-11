@@ -31,17 +31,21 @@ export default function Navbar() {
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center space-x-8">
-          {["About", "Skills", "Experience", "Projects"].map((item) => (
+          {[
+            { name: "Profile", href: "/profile" },
+            { name: "Experience", href: "/experience" },
+            { name: "Projects", href: "/projects" },
+          ].map((item) => (
             <Link
-              key={item}
-              href={`#${item.toLowerCase()}`}
+              key={item.name}
+              href={item.href}
               className="text-sm font-medium text-slate-300 hover:text-blue-400 transition-colors uppercase tracking-widest"
             >
-              {item}
+              {item.name}
             </Link>
           ))}
           <Link
-            href="#contact"
+            href="/contact"
             className="px-5 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-full text-sm font-semibold transition-all shadow-[0_0_15px_rgba(37,99,235,0.5)] hover:shadow-[0_0_25px_rgba(37,99,235,0.7)]"
           >
             Hire Me
@@ -69,14 +73,19 @@ export default function Navbar() {
             className="md:hidden bg-[#0B1120]/95 backdrop-blur-xl border-b border-white/10"
           >
             <div className="px-4 py-6 space-y-4">
-              {["About", "Skills", "Experience", "Projects"].map((item) => (
+              {[
+                { name: "Profile", href: "/profile" },
+                { name: "Experience", href: "/experience" },
+                { name: "Projects", href: "/projects" },
+                { name: "Contact", href: "/contact" },
+              ].map((item) => (
                 <Link
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
+                  key={item.name}
+                  href={item.href}
                   onClick={() => setIsOpen(false)}
                   className="block text-lg text-white hover:text-blue-400"
                 >
-                  {item}
+                  {item.name}
                 </Link>
               ))}
             </div>

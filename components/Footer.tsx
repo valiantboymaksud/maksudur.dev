@@ -18,104 +18,100 @@ export default function Footer() {
   const isDark = theme === 'dark';
 
   return (
-    <footer className={`w-full border-t transition-colors ${
+    <footer className={`w-full py-12 px-4 transition-colors ${
       isDark 
-        ? 'border-white/10 bg-[#0B1120] text-slate-400' 
-        : 'border-slate-200 bg-slate-50 text-slate-600'
-    } py-8 relative z-0`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-        <div className="grid md:grid-cols-3 gap-8 items-center">
-
-          {/* Branding & Socials */}
-          <div className="md:col-span-1 text-center md:text-left">
-            <Link href="/" className={`text-2xl font-bold tracking-tight mb-4 block ${isDark ? 'text-white' : 'text-slate-900'}`}>
-              <Image src="/images/light-icon.png" width={40} height={40} className="inline-block mr-2 mb-1" alt="Logo" />
+        ? 'bg-[#0B1120] text-slate-400' 
+        : 'bg-slate-50 text-slate-600'
+    }`}>
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+          {/* Brand Section */}
+          <div className="col-span-1 md:col-span-2">
+            <Link href="/" className={`text-2xl font-black tracking-tight mb-6 block ${isDark ? 'text-white' : 'text-slate-900'}`}>
               maksudur<span className="text-blue-500">.</span>dev
             </Link>
-            <p className={`text-sm leading-relaxed max-w-sm mb-6 mx-auto md:mx-0 ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
-              Software Engineer specializing in scalable enterprise solutions.
+            <p className="text-sm leading-relaxed max-w-sm mb-8">
+              Engineering high-performance software solutions with a focus on scalability, security, and exceptional user experience.
             </p>
-            <div className="flex gap-4 justify-center md:justify-start">
+            <div className="flex gap-4">
               {socialLinks.map((social) => {
                 const Icon = social.icon;
                 return (
-                  <motion.a
+                  <a
                     key={social.name}
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    whileHover={{ y: -3, color: "#fff" }}
-                    className={`p-2 rounded-lg border transition-all ${
+                    className={`p-2.5 rounded-xl transition-all ${
                       isDark
-                        ? 'bg-white/5 hover:bg-white/10 border-white/5 hover:border-blue-500/50'
-                        : 'bg-slate-200 hover:bg-slate-300 border-slate-300 hover:border-blue-500/50'
+                        ? 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800 hover:border-blue-500/50'
+                        : 'bg-white text-slate-600 hover:text-blue-600 border border-slate-200 hover:border-blue-500/50'
                     }`}
                   >
-                    <Icon size={18} />
-                  </motion.a>
+                    <Icon size={20} />
+                  </a>
                 );
               })}
             </div>
           </div>
 
-          {/* Middle: Availability & CTA */}
-          <div className="md:col-span-1 flex flex-col items-center justify-center text-center">
-            <div className="flex items-center gap-2 mb-2">
-              <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-              <span className="text-green-500 font-medium text-sm">Open for new opportunities</span>
+          {/* Availability & Contact */}
+          <div className="col-span-1">
+            <h4 className={`text-sm font-black uppercase tracking-widest mb-6 ${isDark ? 'text-slate-300' : 'text-slate-900'}`}>
+              Availability
+            </h4>
+            <div className="space-y-4">
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                <span className="text-sm font-bold text-green-500">Open for new projects</span>
+              </div>
+              <p className="text-xs text-slate-500 uppercase tracking-widest">
+                Remote / Freelance / Full-time
+              </p>
+              <div className="pt-4">
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center gap-2 text-sm font-black text-blue-500 hover:text-blue-400 transition-all group"
+                >
+                  Hire Me <span className="group-hover:translate-x-1 transition-transform">→</span>
+                </Link>
+              </div>
             </div>
-            <p className={`text-xs mb-4 ${isDark ? 'text-slate-500' : 'text-slate-500'}`}>
-              Remote | Freelance | Contract
-            </p>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 px-6 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-sm font-medium transition-all shadow-lg shadow-blue-900/20 hover:shadow-blue-900/40"
-            >
-              Let's Talk
-            </Link>
           </div>
 
-          {/* Right: Back to Top */}
-          <div className="md:col-span-1 flex flex-col items-center justify-center">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              className={`p-3 rounded-full border transition-all group ${
-                isDark
-                  ? 'bg-white/5 hover:bg-white/10 border-white/10 hover:border-blue-500/50'
-                  : 'bg-slate-200 hover:bg-slate-300 border-slate-300 hover:border-blue-500/50'
-              }`}
-            >
-              <ArrowUp size={20} className={`group-hover:text-blue-500 transition-colors ${isDark ? 'text-slate-400 group-hover:text-white' : 'text-slate-600 group-hover:text-slate-900'}`} />
-            </motion.button>
+          {/* Quick Links / Location */}
+          <div className="col-span-1">
+            <h4 className={`text-sm font-black uppercase tracking-widest mb-6 ${isDark ? 'text-slate-300' : 'text-slate-900'}`}>
+              Location
+            </h4>
+            <p className="text-sm mb-2">Dhaka, Bangladesh</p>
+            <p className="text-xs text-slate-500">Available globally via remote collaboration.</p>
           </div>
-
         </div>
 
-        {/* Bottom Copyright */}
-        <div className={`mt-8 pt-6 border-t flex flex-col md:flex-row justify-between items-center gap-4 text-xs ${
-          isDark 
-            ? 'border-white/5 text-slate-600' 
-            : 'border-slate-200 text-slate-500'
+        {/* Bottom Bar */}
+        <div className={`pt-8 border-t flex flex-col md:flex-row justify-between items-center gap-6 ${
+          isDark ? 'border-slate-800' : 'border-slate-200'
         }`}>
-          <p>
-            &copy; Copyright {new Date().getFullYear()}. All Rights Reserved.
-          </p>
-          <p>
-            Founder / Lead Engineer at{" "}
+          <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6 text-[10px] font-bold uppercase tracking-widest text-slate-500">
+            <p>&copy; {new Date().getFullYear()} Maksudur Rahman</p>
+            <span className="hidden md:block w-1 h-1 rounded-full bg-slate-700"></span>
+            <p>All Rights Reserved</p>
+          </div>
+          
+          <div className="text-[10px] font-bold uppercase tracking-widest text-slate-500">
+            Design & Build by{" "}
             <a
               href="https://kodersolution.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-pink-500 hover:animate-pulse transition duration-500"
+              className="text-blue-500 hover:text-blue-400 transition-colors"
             >
               Kodersolution
             </a>
-          </p>
+          </div>
         </div>
-
       </div>
     </footer>
   );
-}
+}

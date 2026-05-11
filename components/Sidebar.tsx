@@ -13,9 +13,9 @@ import { useTheme } from "./ThemeProvider";
 
 const navItems = [
   { name: "Home", href: "/", icon: Home, isHash: false },
-  { name: "Profile", href: "#intro", icon: User, isHash: true },
-  { name: "Experience", href: "#experience", icon: Briefcase, isHash: true },
-  { name: "Projects", href: "#projects", icon: FolderOpen, isHash: true },
+  { name: "Profile", href: "/profile", icon: User, isHash: false },
+  { name: "Experience", href: "/experience", icon: Briefcase, isHash: false },
+  { name: "Projects", href: "/projects", icon: FolderOpen, isHash: false },
   { name: "Contact", href: "/contact", icon: Mail, isHash: false },
 ];
 
@@ -150,7 +150,6 @@ export default function Sidebar() {
     <>
       {/* Desktop Sidebar */}
       <motion.aside
-        initial={{ x: -100 }}
         animate={{ x: 0 }}
         className="hidden md:flex fixed left-0 top-0 h-screen w-[280px] dark:bg-[#0B1120]/95 bg-white/95 backdrop-blur-xl border-r border-slate-200 dark:border-white/5 flex-col z-40"
       >
