@@ -181,9 +181,9 @@ export default function Sidebar() {
             animate={{ x: 0 }}
             exit={{ x: "-100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="md:hidden fixed top-0 left-0 h-screen w-[280px] dark:bg-[#0B1120] bg-white z-50 border-r border-slate-200 dark:border-white/10"
+            className="md:hidden fixed top-0 left-0 h-screen w-[280px] dark:bg-[#0B1120] bg-white z-50 border-r border-slate-200 dark:border-white/10 overflow-y-auto"
           >
-            <div className="pt-16 h-full">
+            <div className="pt-4 h-full">
               <SidebarContent />
             </div>
           </motion.div>

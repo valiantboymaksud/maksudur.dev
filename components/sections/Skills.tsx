@@ -60,14 +60,18 @@ export default function Skills() {
   const isDark = theme === 'dark';
 
   return (
-    <section id="skills" className="py-24 px-4 sm:px-6 lg:px-8 relative max-w-6xl mx-auto">
+    <section id="skills" className="py-12 px-3 sm:px-6 lg:px-8 relative max-w-6xl mx-auto">
       <FadeIn>
-        <h2 className={`text-3xl font-bold mb-12 flex items-center gap-3 transition-colors ${
-          isDark ? 'text-white' : 'text-slate-900'
-        }`}>
-          <span className="w-8 h-1 bg-blue-500 rounded-full"></span>
-          Technical Expertise
-        </h2>
+        <div className="mb-16">
+          <h2 className={`text-4xl md:text-5xl font-black mb-4 transition-colors ${
+            isDark ? 'text-white' : 'text-slate-900'
+          }`}>
+            Technical <span className="text-blue-500">Expertise</span>
+          </h2>
+          <p className={`text-lg ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
+            A comprehensive stack of technologies I use to build scalable systems.
+          </p>
+        </div>
       </FadeIn>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

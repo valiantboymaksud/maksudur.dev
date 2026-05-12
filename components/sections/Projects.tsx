@@ -21,37 +21,37 @@ export default function Projects() {
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
         <FadeIn>
           <div className="space-y-2">
-            <h2 className={`text-sm font-bold uppercase tracking-widest ${isDark ? 'text-blue-400' : 'text-blue-600'}`}>
+            <h2 className={`text-[10px] font-black uppercase tracking-[0.3em] ${isDark ? 'text-blue-400' : 'text-blue-600'}`}>
               Portfolio
             </h2>
-            <h3 className={`text-4xl md:text-5xl font-black tracking-tight ${isDark ? 'text-white' : 'text-slate-900'}`}>
+            <h3 className={`text-3xl md:text-5xl font-black tracking-tight ${isDark ? 'text-white' : 'text-slate-900'}`}>
               Selected <span className="text-blue-500">Work</span>
             </h3>
           </div>
         </FadeIn>
         
-        <div className="flex gap-3">
+        <div className="flex gap-2 sm:gap-3">
           <button 
             onClick={() => swiperRef.current?.slidePrev()} 
-            className={`group p-4 rounded-full transition-all border ${
+            className={`group p-3 sm:p-4 rounded-full transition-all border ${
               isDark
                 ? 'bg-slate-900 border-slate-800 hover:border-blue-500 text-slate-400 hover:text-white'
                 : 'bg-white border-slate-200 hover:border-blue-500 text-slate-600 hover:text-blue-600'
             }`}
             aria-label="Previous Slide"
           >
-            <ArrowLeft size={24} className="group-hover:-translate-x-1 transition-transform" />
+            <ArrowLeft size={20} className="sm:w-6 sm:h-6 group-hover:-translate-x-1 transition-transform" />
           </button>
           <button 
             onClick={() => swiperRef.current?.slideNext()} 
-            className={`group p-4 rounded-full transition-all border ${
+            className={`group p-3 sm:p-4 rounded-full transition-all border ${
               isDark
                 ? 'bg-slate-900 border-slate-800 hover:border-blue-500 text-slate-400 hover:text-white'
                 : 'bg-white border-slate-200 hover:border-blue-500 text-slate-600 hover:text-blue-600'
             }`}
             aria-label="Next Slide"
           >
-            <ArrowRight size={24} className="group-hover:translate-x-1 transition-transform" />
+            <ArrowRight size={20} className="sm:w-6 sm:h-6 group-hover:translate-x-1 transition-transform" />
           </button>
         </div>
       </div>

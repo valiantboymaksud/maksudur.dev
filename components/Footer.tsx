@@ -18,16 +18,16 @@ export default function Footer() {
   const isDark = theme === 'dark';
 
   return (
-    <footer className={`w-full py-12 px-4 transition-colors ${
+    <footer className={`w-full py-6 px-3 transition-colors ${
       isDark 
         ? 'bg-[#0B1120] text-slate-400' 
         : 'bg-slate-50 text-slate-600'
     }`}>
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-6">
           {/* Brand Section */}
           <div className="col-span-1 md:col-span-2">
-            <Link href="/" className={`text-2xl font-black tracking-tight mb-6 block ${isDark ? 'text-white' : 'text-slate-900'}`}>
+            <Link href="/" className={`text-2xl font-black tracking-tight mb-3 block ${isDark ? 'text-white' : 'text-slate-900'}`}>
               maksudur<span className="text-blue-500">.</span>dev
             </Link>
             <p className="text-sm leading-relaxed max-w-sm mb-8">
@@ -114,4 +114,4 @@ export default function Footer() {
       </div>
     </footer>
   );
-}
+}

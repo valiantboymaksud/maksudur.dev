@@ -10,7 +10,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
       <ScrollToTop />
 
       <div className="flex-1 md:pl-[280px] overflow-y-auto scroll-smooth">
-        <div className="px-4 pt-16 md:pt-0">
+        <div className="px-4 sm:px-6 md:px-8 pt-20 md:pt-10 pb-10">
           {children}
         </div>
       </div>

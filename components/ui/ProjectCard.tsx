@@ -33,11 +33,11 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
         </div>
 
         {/* Content */}
-        <div className="p-8 flex-1 flex flex-col">
-          <h4 className="text-2xl font-bold mb-3 text-slate-900 dark:text-white group-hover:text-blue-500 transition-colors">
+        <div className="p-6 sm:p-8 flex-1 flex flex-col">
+          <h4 className="text-xl font-bold mb-3 text-slate-900 dark:text-white group-hover:text-blue-500 transition-colors">
             {project.title}
           </h4>
-          <p className="text-sm leading-relaxed mb-6 flex-1 text-slate-600 dark:text-slate-400">
+          <p className="text-[11px] sm:text-sm leading-relaxed mb-6 flex-1 text-slate-600 dark:text-slate-400">
             {project.desc}
           </p>
 

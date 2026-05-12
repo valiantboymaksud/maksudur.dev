@@ -61,19 +61,19 @@ export default function Intro() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="grid grid-cols-2 gap-4"
+          className="grid grid-cols-1 xs:grid-cols-2 gap-4"
         >
           {stats.map((stat, idx) => (
-            <div key={idx} className={`p-6 rounded-xl transition-all border h-full flex flex-col ${
+            <div key={idx} className={`p-5 sm:p-6 rounded-xl transition-all border h-full flex flex-col ${
               isDark
                 ? 'bg-white/5 border-white/10 hover:bg-white/10'
                 : 'bg-slate-100 border-slate-300 hover:bg-slate-200'
             }`}>
-              <stat.icon className="text-blue-500 mb-3" size={24} />
-              <h3 className={`text-sm font-medium uppercase tracking-wider mb-1 transition-colors ${
+              <stat.icon className="text-blue-500 mb-3" size={20} />
+              <h3 className={`text-xs font-medium uppercase tracking-wider mb-1 transition-colors ${
                 isDark ? 'text-slate-400' : 'text-slate-600'
               }`}>{stat.label}</h3>
-              <p className={`text-lg font-bold transition-colors mt-auto ${
+              <p className={`text-base sm:text-lg font-bold transition-colors mt-auto ${
                 isDark ? 'text-white' : 'text-slate-900'
               }`}>{stat.value}</p>
             </div>
