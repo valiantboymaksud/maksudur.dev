@@ -160,9 +160,9 @@ export default function Sidebar() {
       <header className="md:hidden fixed top-0 w-full h-16 dark:bg-[#0B1120]/95 bg-white/95 backdrop-blur-md border-b border-slate-200 dark:border-white/10 z-50 px-4 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-3 group">
           <div className="relative w-8 h-8 rounded-full overflow-hidden ring-1 ring-blue-500/30 group-hover:ring-blue-500 transition-all">
-            <img 
-              src="https://kodersolution.com/assets/frontend/img/author/img.webp?format=webp" 
-              alt="MR" 
+            <img
+              src="https://kodersolution.com/assets/frontend/img/author/img.webp?format=webp"
+              alt="Maksudur Rahman"
               className="object-cover w-full h-full"
             />
           </div>

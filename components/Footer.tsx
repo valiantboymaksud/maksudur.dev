@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { Github, Linkedin, Twitter, Mail, ArrowUp } from "lucide-react";
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { useTheme } from "./ThemeProvider";
 
 const socialLinks = [
@@ -27,8 +26,12 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-6">
           {/* Brand Section */}
           <div className="col-span-1 md:col-span-2">
-            <Link href="/" className={`text-2xl font-black tracking-tight mb-3 block ${isDark ? 'text-white' : 'text-slate-900'}`}>
-              maksudur<span className="text-blue-500">.</span>dev
+            <Link href="/" className="inline-flex items-center gap-3 mb-3">
+              <img
+                src="/images/logo-h.png"
+                alt="M.D Brand Logo"
+                className="h-14 w-auto object-contain"
+              />
             </Link>
             <p className="text-sm leading-relaxed max-w-sm mb-8">
               Engineering high-performance software solutions with a focus on scalability, security, and exceptional user experience.
@@ -99,15 +102,15 @@ export default function Footer() {
             <p>All Rights Reserved</p>
           </div>
           
-          <div className="text-[10px] font-bold uppercase tracking-widest text-slate-500">
-            Design & Build by{" "}
+          <div className="text-[10px] font-bold tracking-widest text-slate-500 flex flex-col md:flex-row items-center gap-1">
+            <span>Principal Engineer at</span>
             <a
               href="https://kodersolution.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-500 hover:text-blue-400 transition-colors"
+              className="text-blue-500 underline decoration-blue-500 decoration-2 underline-offset-2 hover:text-blue-400 transition-colors"
             >
-              Kodersolution
+              kodersolution.com
             </a>
           </div>
         </div>

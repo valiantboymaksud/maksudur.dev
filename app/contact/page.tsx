@@ -101,7 +101,9 @@ export default function ContactPage() {
                   </a>
 
                   <a 
-                    href="https://kodersolution.com" 
+                    href="https://maksudur.dev" 
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex items-center gap-3 p-4 bg-white/5 hover:bg-white/10 border border-white/5 hover:border-purple-500/30 rounded-xl transition-all hover:-translate-y-1 group"
                   >
                     <Globe size={24} className="text-slate-400 group-hover:text-purple-500 transition-colors" />

@@ -29,6 +29,9 @@ export const metadata: Metadata = {
     title: "Maksudur Rahman | Software Engineer",
     description: "Senior Software Engineer specializing in scalable enterprise systems and fintech solutions.",
   },
+  icons: {
+    icon: "/images/M.D-Logo.png",
+  },
   robots: {
     index: true,
     follow: true,
